@@ -260,6 +260,109 @@ const Navbar = () => __jsx("nav", {
 
 /***/ }),
 
+/***/ "./components/prices/prices.component.jsx":
+/*!************************************************!*\
+  !*** ./components/prices/prices.component.jsx ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "F:\\In Progress\\NextJS\\Projects\\BitzPrice\\components\\prices\\prices.component.jsx";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+const Prices = props => {
+  const {
+    0: currency,
+    1: setCurrency
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("USD");
+
+  const handleOnChange = e => {
+    setCurrency(e.target.value.toString());
+  }; //console.log(props);
+
+
+  return __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    },
+    __self: undefined
+  }, __jsx("ul", {
+    className: "list-group",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    },
+    __self: undefined
+  }, __jsx("li", {
+    className: "list-group-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    },
+    __self: undefined
+  }, "Bitcoin rate for ", props.bpi[currency].description, ":", " ", __jsx("span", {
+    className: "badge badge-primary",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 15
+    },
+    __self: undefined
+  }, props.bpi[currency].code), " ", __jsx("strong", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: undefined
+  }, props.bpi[currency].rate))), __jsx("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 22
+    },
+    __self: undefined
+  }), __jsx("select", {
+    className: "form-control",
+    value: currency,
+    onChange: handleOnChange,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 23
+    },
+    __self: undefined
+  }, __jsx("option", {
+    value: "EUR",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    },
+    __self: undefined
+  }, "EUR: Euro"), __jsx("option", {
+    value: "GBP",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: undefined
+  }, "GBP: British Pound"), __jsx("option", {
+    value: "USD",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: undefined
+  }, "USD: American Dollar")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Prices);
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
@@ -1946,31 +2049,58 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_layout_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/layout.component */ "./components/layout.component.jsx");
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_layout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/layout.component */ "./components/layout.component.jsx");
+/* harmony import */ var _components_prices_prices_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/prices/prices.component */ "./components/prices/prices.component.jsx");
 var _jsxFileName = "F:\\In Progress\\NextJS\\Projects\\BitzPrice\\pages\\index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
-const Index = () => __jsx(_components_layout_component__WEBPACK_IMPORTED_MODULE_1__["default"], {
+
+
+const Index = props => __jsx(_components_layout_component__WEBPACK_IMPORTED_MODULE_2__["default"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 3
+    lineNumber: 6
   },
   __self: undefined
 }, __jsx("div", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 4
+    lineNumber: 7
   },
   __self: undefined
 }, __jsx("h1", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 5
+    lineNumber: 8
   },
   __self: undefined
-}, "Welcome to BitzPrice")));
+}, "Welcome to BitzPrice"), __jsx("p", {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 9
+  },
+  __self: undefined
+}, "Check current Bitcoin rate"), __jsx(_components_prices_prices_component__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  bpi: props.bpi,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 10
+  },
+  __self: undefined
+})));
+
+Index.getInitialProps = async () => {
+  const res = await fetch("https://api.coindesk.com/v1/bpi/currentprice.json");
+  const data = await res.json();
+  console.log(data.bpi);
+  return {
+    bpi: data.bpi
+  };
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);
 
@@ -1985,6 +2115,17 @@ const Index = () => __jsx(_components_layout_component__WEBPACK_IMPORTED_MODULE_
 
 module.exports = __webpack_require__(/*! F:\In Progress\NextJS\Projects\BitzPrice\pages\index.js */"./pages/index.js");
 
+
+/***/ }),
+
+/***/ "isomorphic-unfetch":
+/*!*************************************!*\
+  !*** external "isomorphic-unfetch" ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("isomorphic-unfetch");
 
 /***/ }),
 
