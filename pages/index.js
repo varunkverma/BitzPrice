@@ -1,8 +1,9 @@
-import Navbar from "../components/navbar/navbar.component";
+import Layout from "../components/layout.component";
 const Index = () => (
-  <div>
-    <Navbar />
-    <h1>Welcome to BitzPrice</h1>
-  </div>
+  <Layout>
+    <div>
+      <h1>Welcome to BitzPrice</h1>
+    </div>
+  </Layout>
 );
 export default Index;
