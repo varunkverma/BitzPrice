@@ -1,5 +1,8 @@
+import Navbar from "../components/navbar/navbar.component";
+
 const About = () => (
   <div>
+    <Navbar />
     <h1>About BitzPrice</h1>
     <p>Application to view Bitcoin prices</p>
   </div>
